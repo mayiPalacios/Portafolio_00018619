@@ -1,0 +1,36 @@
+1. cuales nodos son la raiz,ramas y hojas.
+
+raiz:A
+ramas: B,C,D,E,F,G,H
+hojas:I,J,G,K,L
+
+2.nivel de cada nodo
+A:0
+B:1
+C,D:2
+E,F,G,H:3
+I,J,K,L:4
+
+3.profundidad,peso y orden del arbol
+
+profundidad: 4
+peso: 12
+orden:2
+
+4. un subarbol cualquiera
+            c
+          /   \
+		  E		F
+		   \      \
+		     I      J   
+5.determine si es lleno o estricto
+no,porque hay nodos que tienen 1 hijo 
+
+6.determine si es perfecto o completo
+no,porque la hoja G esta en el nivel 3  y las demas en el nivel 4
+
+7.ordenamiento pre-orden, post-orden e in-orden
+
+in-orden:I,E,C,J,F,B,G,D,K,H,L,A
+preorden:A,B,C,E,I,F,J,D,G,H,K,L
+post-orden:I,E,J,F,C,G,D,K,L,H,B,A
