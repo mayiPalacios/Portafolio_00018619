@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//------ Creacion de nodo y de arbol ------
+
 struct nodo{
     int info;
     struct nodo *izq;
@@ -18,7 +18,7 @@ Arbol crearArbol(int x){
     return p;
 }
 
-//------ Agregar nodos a un arbol ------
+
 void asignarIzq(Arbol a, int unDato){
     if(a == NULL)
         cout << "Error: arbol vacio" << endl;
@@ -37,154 +37,93 @@ void asignarDer(Arbol a, int unDato){
         a->der = crearArbol(unDato);
 }
 
-void agregarNodo(Arbol a){
-    //solicitar informacion (numero a agregar)
+
+void agregarNodo(Arbol a1, Arbol a2){
+   
     int numero = 0;
     cout << "Numero a agregar: ";
     cin >> numero;
-   
-    Arbol p = a;
-   
-    //desplazarse hasta el lugar adecuado
+    
+    Arbol p = a1;
+    Arbol p1 = a2;
+    
+
     while(true){
         if(numero == p->info){
             cout << "Error: " << numero << " ya existe" << endl;
             return;
         }
-        else if(numero < p->info){//ir a la izquierda
+        else if(numero < p->info){
             if(p->izq == NULL)
                 break;
-            else
+            else{
                 p = p->izq;
+                p1 = p1->der;
+            }
         }
-        else{//ir a la derecha
+        else{
             if(p->der == NULL)
                 break;
-            else
+            else{
                 p = p->der;
+                p1 = p1->izq;
+            }
         }
     }
+    
    
-    //agregar el nuevo nodo
-    if(numero < p->info)
+    if(numero < p->info){
         asignarIzq(p, numero);
-    else
+        asignarDer(p1, numero);
+    }
+    else{
         asignarDer(p, numero);
-}
-
-//------ Recorrer un arbol (in, pre y post orden) ------
-void preorden(Arbol a){
-    if(a != NULL){
-        cout << " " << a->info;
-        preorden(a->izq);
-        preorden(a->der);
+        asignarIzq(p1, numero);
     }
 }
+
+
 void inorden(Arbol a){
     if(a != NULL){
         inorden(a->izq);
         cout << " " << a->info;
         inorden(a->der);
-    }
-}
-void postorden(Arbol a){
-    if(a != NULL){
-        postorden(a->izq);
-        postorden(a->der);
-        cout << " " << a->info;
-    }
+    }else
+        cout << endl;
 }
 
-void recorrerArbol(Arbol a){
-    cout << "Recorrido PRE orden:"; preorden(a); cout << endl;
-    cout << "Recorrido IN orden:"; inorden(a); cout << endl;
-    cout << "Recorrido POST orden:"; postorden(a); cout << endl;
-}
-
-int max(int a, int b){
-    return ((a > b) ? a : b);
-}
-
-int contarNiveles(Arbol a){
-    if(a == NULL){
-        return 0;
-    }
-    int izq_h = contarNiveles(a->izq);
-    int der_h = contarNiveles(a->der);
-    return 1 + max(izq_h, der_h);
-}
-
-int contador_nodos = 0;
-void contarNodos(Arbol a){
-    if(a != NULL){
-        contador_nodos++;
-        contarNodos(a->izq);
-        contarNodos(a->der);
-    }
-}
-
-int sumatoria_nodos = 0;
-int sumarNodos(Arbol a){
-    if(a != NULL){
-        sumatoria_nodos = sumatoria_nodos + a->info;
-        sumarNodos(a->izq);
-        sumarNodos(a->der);
-    }
+void recorrerArbol(Arbol a1, Arbol a2){
+    cout << "Recorrido In A Orden:";
+    inorden(a1);
+    cout << "Arbol inverso In B Orden:";
+    inorden(a2);
 }
 
 int main(){
     int variable = 0;
     cout<<"Inicializando arbol...\nValor contenido en la raiz: ";
     cin >> variable;
-   
-    Arbol arbol = crearArbol(variable);
-   
+    
+    Arbol arbol1 = crearArbol(variable);
+    Arbol arbol2 = crearArbol(variable);
+    
     bool continuar = true;
     do{
         int opcion = 0;
-        cout << "Menu: "
-         << "\n\t1) Agregar"
-         << "\n\t2) Recorrer"
-         << "\n\t3) Cantidad de niveles"
-         << "\n\t4) Cantidad de nodos"
-         << "\n\t5) Suma de los nodos"
-         << "\n\t6) Salir"
-         << "\n\tOpcion elegida:";
+        cout << "Menu: \n\t1) Agregar\n\t2) Recorrer"
+        << "\n\t3) Salir\n\tOpcion elegida: ";
         cin >> opcion;
         switch(opcion){
-            case 1:
-                agregarNodo(arbol);
-            break;
-           
-            case 2:
-                recorrerArbol(arbol);
-            break;
-           
-            case 3:
-                cout << contarNiveles(arbol) << " Niveles encontrados en el arbol." <<endl;
-            break;
-           
-            case 4:
-                contarNodos(arbol);
-               cout << contador_nodos << " Nodos encontrados." << endl;
-                contador_nodos = 0;
-            break;
-           
-            case 5:
-                sumarNodos(arbol);
-                cout << "La sumatoria es igual a: " << sumatoria_nodos << endl;
-                sumatoria_nodos = 0;
-            break;
-           
-            case 6:
-                continuar = false;
-            break;
-           
-            default:
-                cout << "Opcion erronea!" << endl;
-            break;
+            case 1: agregarNodo(arbol1, arbol2);
+                break;
+            case 2: recorrerArbol(arbol1, arbol2);
+                break;
+            case 3: continuar = false;
+                break;
+            default: cout << "Opcion erronea!" << endl;
+                break;
         }
     }while(continuar);
-   
+    
     return 0;
 }
