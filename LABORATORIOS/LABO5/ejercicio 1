@@ -35,7 +35,7 @@ void asignarDer(Arbol a, int unDato){
     else if(a->der != NULL)
         cout << "Error: subarbol DER ya existe" << endl;
     else
-        a->der = crearArbol(unDato);
+        a->der = crearArbol(unDato) ;
 }
 
 void agregarNodo(Arbol a){
