@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-
+void menu();
 struct nodo{
     int info;
     struct nodo *izq;
@@ -110,15 +110,14 @@ int main(){
     bool continuar = true;
     do{
         int opcion = 0;
-        cout << "Menu: \n\t1) Agregar\n\t2) Recorrer"
-        << "\n\t3) Salir\n\tOpcion elegida: ";
+      menu();
         cin >> opcion;
         switch(opcion){
             case 1: agregarNodo(arbol1, arbol2);
                 break;
             case 2: recorrerArbol(arbol1, arbol2);
                 break;
-            case 3: continuar = false;
+            case 0: continuar = false;
                 break;
             default: cout << "Opcion erronea!" << endl;
                 break;
@@ -126,4 +125,11 @@ int main(){
     }while(continuar);
     
     return 0;
+}
+
+void menu(){
+cout<<"1.agregando nodos"<<endl;
+	    cout<<"2.recorrer"<<endl;
+	    cout<<"0. salir"<<endl;
+
 }
