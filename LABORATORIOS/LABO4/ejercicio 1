@@ -155,12 +155,12 @@ int main(){
             break;
             
             case 3: 
-                std::cout << contarNiveles(arbol) << " Niveles encontrados en el arbol." << std::endl;
+                cout << contarNiveles(arbol) << " Niveles encontrados en el arbol." << endl;
             break;
             
             case 4: 
                 contarNodos(arbol);
-                std::cout << contador_nodos << " Nodos encontrados." << std::endl;
+                cout << contador_nodos << " Nodos encontrados." <<endl;
                 contador_nodos = 0;
             break;
             
@@ -192,10 +192,7 @@ int main(){
 	    cout<<"4.cantidad de nodos"<<endl;
 	    cout<<"5.suma de nodos"<<endl;
 	    cout<<"0. salir"<<endl;
-	    
-	    
-	    
-	    
+	     
 	}
 	
 	
