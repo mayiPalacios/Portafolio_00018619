@@ -166,7 +166,7 @@ int main(){
             break;
             case 3: buscar(arbol);
             break;
-            case 4: continuar = false;
+            case 0: continuar = false;
             break;
             default: cout << "Opcion erronea!" << endl;
             break;
